@@ -1,2 +1,7 @@
-﻿# ApolloServerAuthentication
-An easy to use Apollo Server authentication system using bcrypt and JWT, simply change the URI link in index.js to your MongoDB server and you're good to go!
+﻿# Apollo Server Marketplace
+An easy-to-use Apollo Server system using bcrypt and JWT
+
+Steps to run server:
+
+- add `.env` file with DB_HOST and PORT variables (template .env.example)
+- `npm run start`
