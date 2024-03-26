@@ -10,6 +10,12 @@ type User {
     token: String
 }
 
+type FeatureToggle {
+    id: String
+    showSales: Boolean
+    showOldCollection: Boolean
+}
+
 input RegisterInput {
     username: String
     email: String
@@ -22,13 +28,22 @@ input LoginInput {
     password: String 
 }
 
+input FeatureSwitch {
+    showSales: Boolean
+    showOldCollection: Boolean
+}
+
 type Query {
     getUserById(ID: ID!): User
     getUserByEmail(email: String!): User
+    getFeatureToggle: FeatureToggle
 }
 
 type Mutation {
     registerUser(registerInput: RegisterInput): User
     loginUser(loginInput: LoginInput): User
+    changeUserRole(ID: ID!, role: String!): String
+    changeFeatureToggle(values: FeatureSwitch): FeatureToggle
 }
+
 `
