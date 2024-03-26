@@ -74,6 +74,33 @@ module.exports = {
             } else {
                 throw new ApolloError('Incorrect password', 'INCORRECT_PASSWORD');
             }
+        },
+        async changeUserRole(_, {ID, role}, context) {
+            const { userID } = context;
+
+            if (!(ID && role)) {
+                throw new ApolloError("User ID and role is required", "400");
+            }
+
+            const user = await User.findById(ID);
+
+            if (!user) {
+                throw new ApolloError('User is not found', 'USER_NOT_FOUND');
+            }
+
+            if (user.id === userID) {
+                throw new ApolloError('You cannot change your status. Contact another administrator', 'USER_PERMISSIONS_ERROR');
+            }
+
+            user.role = role;
+
+            try {
+                await user.save()
+
+                return "Success"
+            } catch {
+                throw new ApolloError('Failed to update user role', 'UPDATE_FAILED');
+            }
         }
     },
     Query: {
