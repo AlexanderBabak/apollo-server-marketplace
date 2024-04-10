@@ -16,6 +16,16 @@ type FeatureToggle {
     showOldCollection: Boolean
 }
 
+type Product {
+    id: String
+    title: String,
+    description: String,
+    price: Float,
+    rating: Int,
+    imageURL: String,
+    category: String
+}
+
 input RegisterInput {
     username: String
     email: String
@@ -37,6 +47,8 @@ type Query {
     getUserById(ID: ID!): User
     getUserByEmail(email: String!): User
     getFeatureToggle: FeatureToggle
+    getAllProducts: [Product]
+    getProductById(ID: ID!): Product
 }
 
 type Mutation {
